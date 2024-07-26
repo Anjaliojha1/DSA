@@ -1,0 +1,37 @@
+class ListNode(object):
+    def __init__(self, data=0, next=None):
+        self.data = data
+        self.next = next
+
+def sortList(head):
+    if not head:
+        return head
+
+    count = [0, 0, 0]
+    current = head
+
+    # First pass: count the number of 0s, 1s, and 2s
+    while current:
+        if current.data == 0:
+            count[0] += 1
+        elif current.data == 1:
+            count[1] += 1
+        else:
+            count[2] += 1
+        current = current.next
+
+    # Second pass: overwrite the linked list with sorted values
+    current = head
+    index = 0
+
+    while current:
+        while count[index] == 0:
+            index += 1
+        current.data = index
+        count[index] -= 1
+        current = current.next
+
+    return head
+
+
+
