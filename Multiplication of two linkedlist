@@ -1,0 +1,20 @@
+class node:
+    def __init__(self):
+        self.data = None
+        self.next = None
+'''
+
+class Solution:
+        
+    def multiply_two_lists(self, first, second):
+        MOD = 10**9+7
+        def llToNum(node):
+            num = 0
+            while node is not None:
+                num = (num *10 + node.data)% MOD
+                node = node.next
+            return num
+            
+        num1 = llToNum(first)
+        num2 = llToNum(second)
+        return (num1 * num2)% MOD   
