@@ -1,0 +1,20 @@
+class Solution(object):
+    def getIntersectionNode(self, headA, headB):
+        if not headA or not headB:
+            return None
+        
+        partA = headA
+        partB = headB
+        
+        while partA != partB:
+            if partA is None:
+                partA = headB
+            else:
+                partA = partA.next
+
+            if partB is None:
+                partB = headA
+            else:
+                partB = partB.next
+        
+        return partA
