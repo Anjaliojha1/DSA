@@ -1,0 +1,29 @@
+class Solution(object):
+    def addTwoNumbers(self, l1, l2):
+        def lltonum(node):
+            num = 0
+            place = 1  # Start with the least significant digit
+            while node is not None:
+                num += node.val * place
+                place *= 10
+                node = node.next
+            return num
+
+        n1 = lltonum(l1) 
+        n2 = lltonum(l2) 
+        total = n1 + n2
+
+        # Convert the sum back to a linked list
+        dummy_head = ListNode(0)
+        current = dummy_head
+        if total == 0:
+            return ListNode(0)
+        while total > 0:
+            digit = total % 10
+            current.next = ListNode(digit)
+            current = current.next
+            total //= 10
+
+        return dummy_head.next
+    
+        
