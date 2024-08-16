@@ -1,0 +1,36 @@
+class Solution:
+    def subLinkedList(self, l1, l2): 
+        # Function to convert a linked list to a number
+        def lltonum(node):
+            num = 0
+            while node is not None:
+                num = (num * 10) + node.data
+                node = node.next
+            return num
+
+        # Function to convert a number to a linked list
+        def numtoll(num):
+            if num == 0:
+                return Node(0)
+            head = None
+            while num:
+                digit = num % 10
+                num //= 10
+                new_node = Node(digit)
+                new_node.next = head
+                head = new_node
+            return head  
+        
+        # Convert both linked lists to numbers
+        num1 = lltonum(l1)
+        num2 = lltonum(l2)
+
+        # Subtract the smaller number from the larger number
+        if num1 >= num2:
+            a = num1 - num2
+        else:
+            a = num2 - num1
+
+        # Convert the result back to a linked list
+        result = numtoll(a)
+        return result
