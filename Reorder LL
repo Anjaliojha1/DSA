@@ -1,0 +1,33 @@
+class Solution(object):
+    def reverse(self, head):
+        before = None
+        temp = head
+        while temp:
+            after = temp.next
+            temp.next = before
+            before = temp
+            temp = after
+        return before
+    
+    def reorderList(self, head):
+        slow = head
+        fast = head.next
+        while fast  and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        
+        
+        second = slow.next
+        slow.next = None
+        ll2= self.reverse(second)
+        first = head
+        while ll2:
+            temp1 = first.next
+            
+            temp2 = ll2.next
+            first.next = ll2
+            ll2.next = temp1
+            first = temp1
+            ll2 = temp2
+            
+        
