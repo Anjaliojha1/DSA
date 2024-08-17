@@ -1,0 +1,17 @@
+class Solution(object):
+    def backspaceCompare(self, s, t):
+        stack1 = []
+        stack2 = []
+        for ch in s:
+            if ch! = '#':
+                stack1.push(ch)
+            elif ch == '#' and not stack.is_empty():
+                stack1.pop()
+        for ch in t:
+            if ch! = '#':
+                stack2.push(ch)
+            elif ch == '#' and not stack.is_empty():
+                stack2.pop()
+        if stack1 == stack2:
+            return True
+        return False
