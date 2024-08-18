@@ -1,0 +1,19 @@
+class Solution(object):
+    def evalRPN(self, tokens):
+        stack = []
+        for i in tokens:
+            if i.isdigit() or (i[0] == '-' and len(i) > 1):  # Handles negative numbers
+                stack.append(int(i))
+            else:
+                a = stack.pop()
+                b = stack.pop()
+                if i == '+':
+                    stack.append(b + a)
+                elif i == '-':
+                    stack.append(b - a)
+                elif i == '*':
+                    stack.append(b * a)
+                elif i == '/':
+                    # Python division already truncates towards zero for integers
+                     stack.append(int(float(b) / a))  # Explicit conversion to handle negative numbers correctly
+        return stack[-1]
