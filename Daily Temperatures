@@ -1,0 +1,11 @@
+class Solution(object):
+    def dailyTemperatures(self, temperatures):
+        stack = []
+        ans = [0] * len(temperatures)
+        for temp in reversed(range(len(temperatures))):
+            while stack and temperatures[stack[-1]]<= temperatures[temp]:
+                stack.pop()
+            if stack:
+                ans[temp] = stack[-1] - temp
+            stack.append(temp)  
+        return ans  
