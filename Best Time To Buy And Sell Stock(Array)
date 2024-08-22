@@ -1,0 +1,11 @@
+class Solution(object):
+    def maxProfit(self, prices):
+        minprice = float('inf') # THIS IS THE METHOD TO INITIALIZE IT TO INFINITY
+        maxprofit = 0
+        for i in prices:
+            if i < minprice:
+                minprice = i
+            p = i - minprice
+            if p> maxprofit:
+                maxprofit = p
+        return maxprofit
