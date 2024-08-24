@@ -1,0 +1,11 @@
+class Solution(object):
+    def findDuplicates(self, nums):
+        a = []
+        seen = set()
+        for i in nums:
+            if i in seen:
+                a.append(i)
+            else:
+                seen.add(i)
+            
+        return a
