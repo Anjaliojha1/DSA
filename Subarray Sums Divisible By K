@@ -1,0 +1,18 @@
+class Solution(object):
+    def subarraysDivByK(self, nums, k):
+        count = 0
+        n = len(nums)
+        for start in range(n):
+            current_sum = 0
+            for end in range(start, n):
+                current_sum += nums[end]
+
+                if current_sum % k ==0:
+                    count += 1
+        return count
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        
