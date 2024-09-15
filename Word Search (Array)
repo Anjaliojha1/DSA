@@ -1,0 +1,37 @@
+class Solution(object):
+    def exist(self, board, word):
+        row, col = len(board), len(board[0])
+        path = set()
+
+        def dfs(r, c, i):
+            # If we have matched all characters in the word
+            if i == len(word):
+                return True
+            # If out of bounds or current character doesn't match or already visited
+            if r < 0 or c < 0 or r >= row or c >= col or board[r][c] != word[i] or (r, c) in path:
+                return False
+            # Add current position to the path
+            path.add((r, c))
+            # Explore all 4 directions
+            result = (dfs(r+1, c, i+1) or  # down
+                      dfs(r-1, c, i+1) or  # up
+                      dfs(r, c+1, i+1) or  # right
+                      dfs(r, c-1, i+1))    # left
+            # Remove current position from the path (backtrack)
+            path.remove((r, c))
+            return result
+
+        # Iterate over each cell in the board
+        for i in range(row):
+            for j in range(col):
+                # Start DFS if we find the first character of the word
+                if dfs(i, j, 0):
+                    return True
+        return False
+
+        """
+        :type board: List[List[str]]
+        :type word: str
+        :rtype: bool
+        """
+        
