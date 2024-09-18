@@ -1,0 +1,16 @@
+def first_non_repeating_char(string):
+    count_char = {}
+    
+    # First pass: Count the frequency of each character
+    for i in string:
+        if i in count_char:
+            count_char[i] += 1
+        else:
+            count_char[i] = 1  # Corrected this line, updating the dictionary
+    
+    # Second pass: Find the first character with a frequency of 1
+    for i in string:
+        if count_char[i] == 1:  # Corrected the condition to check character count
+            return i
+    
+    return None
