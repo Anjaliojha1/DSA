@@ -1,0 +1,8 @@
+def two_sum(nums, target):
+    sum_group = {}
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in sum_group:
+            return sum_group[complement], i  # Return the indices of the complement and current number
+        sum_group[num] = i  # Store the number and its index in the hash map
+    return []  # Return an empty list if no pair is found
