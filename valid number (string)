@@ -1,0 +1,54 @@
+class Solution(object):
+    def isNumber(self, s):
+        decimal_used = False
+        integer_seen = False
+        i = 0
+
+        # Check for optional sign
+        if i < len(s) and s[i] in ['+', '-']:
+            i += 1
+        
+        while i < len(s):
+            curr_ch = s[i]
+            
+            if curr_ch.isdigit():
+                integer_seen = True
+            elif curr_ch == '.':
+                if decimal_used:
+                    return False  # Multiple decimal points are not allowed
+                decimal_used = True
+            elif curr_ch in ['e', 'E']:
+                # 'e' or 'E' must be followed by a valid integer
+                return integer_seen and self.is_valid_int(s[i + 1 :])
+            elif curr_ch in ['+', '-']: 
+                return False  # '+' or '-' should not appear mid-number unless after 'e' or 'E'
+            else:
+                return False  # Any other character is invalid
+            i += 1
+        
+        return integer_seen
+    
+    def is_valid_int(self, stre):
+        if not stre:
+            return False
+        
+        integer_seen = False
+        i = 0
+
+        # Check for optional sign
+        if i < len(stre) and stre[i] in ['+', '-']:
+            i += 1
+        
+        while i < len(stre):
+            curr = stre[i]
+            if not curr.isdigit():
+                return False
+            integer_seen = True
+            i += 1
+
+        return integer_seen
+        """
+        :type s: str
+        :rtype: bool
+        """
+        
