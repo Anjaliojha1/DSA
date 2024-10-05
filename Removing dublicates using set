@@ -1,0 +1,4 @@
+def remove_duplicates(my_list): 
+    # Convert the list to a set and then back to a list to remove duplicates 
+    new_list = list(set(my_list)) 
+    return new_list
