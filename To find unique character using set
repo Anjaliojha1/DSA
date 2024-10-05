@@ -1,0 +1,7 @@
+def has_unique_chars(word):
+    is_unique = set()
+    for item in word:
+        if item in is_unique:
+            return False
+        is_unique.add(item)
+    return True
